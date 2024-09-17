@@ -6,16 +6,17 @@ import io.micronaut.http.client.HttpClient;
 import io.micronaut.http.client.annotation.Client;
 import io.micronaut.runtime.EmbeddedApplication;
 import io.micronaut.test.extensions.junit5.annotation.MicronautTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.Assertions;
 
 import jakarta.inject.Inject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@Slf4j
 @MicronautTest
 class HelloWorldControllerTest {
 
@@ -46,6 +47,7 @@ class HelloWorldControllerTest {
         @Test
         @DisplayName("should return a json response with the message 'Hello, World!'")
         void helloWorldEndpointResponseWithText() {
+            log.trace("test");
             String response = httpClient.toBlocking().retrieve("/hello");
             assertEquals("{\"message\": \"Hello from service!\"}", response);
         }

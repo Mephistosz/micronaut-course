@@ -9,7 +9,7 @@
         </encoder>
     </appender>
 
-    <logger name="com.meph.course" level="debug"/>
+    <logger name="com.meph.course" level="trace"/>
 
     <root level="info">
         <appender-ref ref="STDOUT"/>

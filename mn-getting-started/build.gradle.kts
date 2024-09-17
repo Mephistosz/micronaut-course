@@ -3,6 +3,7 @@ plugins {
     id("io.micronaut.application") version "4.4.2"
     id("io.micronaut.aot") version "4.4.2"
     id("com.github.ben-manes.versions") version "0.51.0"
+    id("io.freefair.lombok") version "8.10"
 }
 
 version = "0.1"
@@ -13,12 +14,10 @@ repositories {
 }
 
 dependencies {
-    annotationProcessor("org.projectlombok:lombok")
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
     compileOnly("io.micronaut:micronaut-http-client")
-    compileOnly("org.projectlombok:lombok")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
 }
