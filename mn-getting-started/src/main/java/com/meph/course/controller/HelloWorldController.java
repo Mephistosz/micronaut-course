@@ -1,6 +1,5 @@
 package com.meph.course.controller;
 
-import com.meph.course.service.HelloWorldService;
 import com.meph.course.service.MyService;
 import io.micronaut.http.MediaType;
 import io.micronaut.http.annotation.Controller;

@@ -1,9 +1,12 @@
+var datafakerVersion = "2.3.1"
+var javaVersion = "21"
+var lombokVersion = "1.18.34"
+
 plugins {
     id("com.github.johnrengelman.shadow") version "8.1.1"
     id("io.micronaut.application") version "4.4.2"
     id("io.micronaut.aot") version "4.4.2"
     id("com.github.ben-manes.versions") version "0.51.0"
-    id("io.freefair.lombok") version "8.10"
 }
 
 version = "0.1"
@@ -13,13 +16,19 @@ repositories {
     mavenCentral()
 }
 
+
 dependencies {
+    annotationProcessor("org.projectlombok:lombok:$lombokVersion")
     annotationProcessor("io.micronaut:micronaut-http-validation")
     annotationProcessor("io.micronaut.serde:micronaut-serde-processor")
     implementation("io.micronaut.serde:micronaut-serde-jackson")
+    implementation("net.datafaker:datafaker:$datafakerVersion")
+    compileOnly("org.projectlombok:lombok:$lombokVersion")
     compileOnly("io.micronaut:micronaut-http-client")
     runtimeOnly("ch.qos.logback:logback-classic")
     testImplementation("io.micronaut:micronaut-http-client")
+    testCompileOnly("org.projectlombok:lombok:$lombokVersion")
+    testAnnotationProcessor("org.projectlombok:lombok:$lombokVersion")
 }
 
 
@@ -27,8 +36,8 @@ application {
     mainClass = "com.meph.course.Application"
 }
 java {
-    sourceCompatibility = JavaVersion.toVersion("21")
-    targetCompatibility = JavaVersion.toVersion("21")
+    sourceCompatibility = JavaVersion.toVersion(javaVersion)
+    targetCompatibility = JavaVersion.toVersion(javaVersion)
 }
 
 
@@ -57,7 +66,7 @@ micronaut {
 
 
 tasks.named<io.micronaut.gradle.docker.NativeImageDockerfile>("dockerfileNative") {
-    jdkVersion = "21"
+    jdkVersion = javaVersion
 }
 
 
